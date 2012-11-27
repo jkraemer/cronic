@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+# Usage:
+#
+# startup as daemon:
+# script/cronic -d -l log/cronic.log -P tmp/pids/cronic.pid
+#
+# shutdown running daemon:
+# script/cronic -k -P tmp/pids/cronic.pid
+
+
+APP_PATH = File.expand_path('../../config/application',  __FILE__)
+require File.expand_path('../../config/boot',  __FILE__)
+
+require APP_PATH
+Rails.application.require_environment!
+
+require "cronic"
+require "dante"
+
+
+Dante.run('cronic scheduler') do
+  scheduler = Cronic::Scheduler.new
+  Dir[Rails.root.join('config', 'cronic.d', '**/*.rb')].each do |file|
+    puts "loading #{file}"
+    scheduler.load_jobs file
+  end
+  puts "Finished loading job definitions."
+  scheduler.join
+end
+
