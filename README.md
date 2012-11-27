@@ -77,7 +77,7 @@ Capistrano
 ----------
 
 In order to stop / start / restart Cronic automatically when deploying
-with capistrano, follow the following steps:
+with capistrano, follow these steps:
 
 **Include the Cronic recipes in your Capfile or deploy.rb**
 
