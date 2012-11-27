@@ -73,6 +73,37 @@ your application, exceptions will also be reported via
 `Airbrake.notify`.
 
 
+Capistrano
+----------
+
+In order to stop / start / restart Cronic automatically when deploying
+with capistrano, follow the following steps:
+
+**Include the Cronic recipes in your Capfile or deploy.rb**
+
+    require 'cronic/recipes'
+
+**Hook Cronic tasks to Capistrano's tasks**
+
+    after "deploy:stop",    "cronic:stop"
+    after "deploy:start",   "cronic:start"
+    after "deploy:restart", "cronic:restart"
+
+**Optional: customize task behaviour**
+
+    set :rails_env, 'production'  # this is the default
+
+    # relative to current_path, defaults to log/cronic.log
+    set :cronic_log, 'some/log/file'
+
+    # relative to current_path, defaults to tmp/pids/cronic.pid
+    set :cronic_pid, 'some/pid/file'
+ 
+    # custom role to have it run on a special server
+    role :cron, 'dedicated.cron.server'
+    set :cronic_server_role, :cron
+
+
 Monitoring
 ----------
 
