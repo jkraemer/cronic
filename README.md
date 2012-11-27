@@ -33,25 +33,24 @@ Usage
 
 Three easy steps:
 
-*Add Cronic to your Gemfile and run Bundler*
+**Add Cronic to your Gemfile and run Bundler**
 
     echo "gem 'cronic'" >> Gemfile
     bundle install
 
-*Run the Rails generator and create job definitions*
+**Run the Rails generator and create job definitions**
 
     rails g cronic
 
 This will set up `script/cronic`, which you will use to start / stop the
 daemon. It also creates the `config/cronic.d` directory where you will
-store your job definitions. A sample job definition file is included.
-Have a look at `config/cronic.d/sample.rb` to get an idea of how to
-define your jobs. For more information, be sure to visit the
-Rufus-Scheduler documentation. Every method that is available on a
-Rufus::Scheduler instance can be called in the job definition files
-located in `config/cronic.d`.
+store your job definitions. Have a look at `config/cronic.d/sample.rb`
+to get an idea of how to define your jobs. For more information, be sure
+to visit the Rufus-Scheduler documentation. Every method that is
+available on a Rufus::Scheduler instance can be called in the job
+definition files located in `config/cronic.d`.
 
-*Run it*
+**Run it**
 
     script/cronic -d -l log/cronic.log -P tmp/pids/cronic.pid
 
