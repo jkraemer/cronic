@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", ">= 3"
 
   # If you need to check in files that aren't .rb files, add them here
-  s.files        = Dir["{lib,recipes}/**/*.rb", "LICENSE", "*.md"]
+  s.files        = Dir["{lib,recipes}/**/*.rb", "templates/**/*", "LICENSE", "*.md"]
   s.require_path = 'lib'
 
 end
