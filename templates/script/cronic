@@ -20,7 +20,10 @@ require "dante"
 
 
 Dante.run('cronic scheduler') do
+  # Instantiate the scheduler.
+  # The optional hash argument is passed directly to Rufus::Scheduler.start_new
   scheduler = Cronic::Scheduler.new
+  # scheduler = Cronic::Scheduler.new :frequency => 60.0
   Dir[Rails.root.join('config', 'cronic.d', '**/*.rb')].each do |file|
     puts "loading #{file}"
     scheduler.load_jobs file

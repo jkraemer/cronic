@@ -9,8 +9,8 @@ end
 module Cronic
   class Scheduler
 
-    def initialize
-      @rufus_scheduler = Rufus::Scheduler.start_new
+    def initialize(opts = {})
+      @rufus_scheduler = Rufus::Scheduler.start_new(opts)
       setup_exception_handler
     end
 
